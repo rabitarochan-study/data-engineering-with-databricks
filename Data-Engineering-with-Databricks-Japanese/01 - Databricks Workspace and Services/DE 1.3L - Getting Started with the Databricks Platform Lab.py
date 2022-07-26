@@ -163,6 +163,22 @@ display(example_df)
 # COMMAND ----------
 
 # MAGIC %md
+# MAGIC ## 自己紹介
+# MAGIC 
+# MAGIC わたしは asamizu と申します。
+# MAGIC 
+# MAGIC 好きな食べ物は、
+# MAGIC 
+# MAGIC - カレーライス
+# MAGIC - ハンバーグ
+# MAGIC 
+# MAGIC です。子供の舌を持っています。
+# MAGIC 
+# MAGIC 私のブログは [こちら](https://rabitarochan.hatenablog.com/) です。
+
+# COMMAND ----------
+
+# MAGIC %md
 # MAGIC 
 # MAGIC 
 # MAGIC 

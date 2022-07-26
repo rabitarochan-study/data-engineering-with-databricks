@@ -251,7 +251,7 @@ DESCRIBE HISTORY students
 -- COMMAND ----------
 
 SELECT * 
-FROM students VERSION AS OF 3
+FROM students VERSION AS OF 8;
 
 -- COMMAND ----------
 
@@ -321,7 +321,7 @@ RESTORE TABLE students TO VERSION AS OF 8
 
 -- COMMAND ----------
 
--- VACUUM students RETAIN 0 HOURS
+VACUUM students RETAIN 0 HOURS;
 
 -- COMMAND ----------
 

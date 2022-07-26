@@ -78,6 +78,18 @@ CREATE TABLE IF NOT EXISTS students
 
 -- COMMAND ----------
 
+select
+  *
+from
+  students
+where
+  1 = 1
+order by
+  id
+;
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC 
 -- MAGIC 
@@ -190,6 +202,10 @@ WHERE value > 6
 
 -- COMMAND ----------
 
+select * from students order by id;
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC 
 -- MAGIC 
@@ -237,6 +253,12 @@ WHEN MATCHED AND u.type = "delete"
   THEN DELETE
 WHEN NOT MATCHED AND u.type = "insert"
   THEN INSERT *
+WHEN NOT MATCHED AND u.type = "update"
+  THEN INSERT *
+
+-- COMMAND ----------
+
+select * from students order by id;
 
 -- COMMAND ----------
 
