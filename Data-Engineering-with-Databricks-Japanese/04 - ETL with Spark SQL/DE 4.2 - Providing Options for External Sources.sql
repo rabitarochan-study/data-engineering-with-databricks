@@ -78,7 +78,7 @@ SELECT * FROM csv.`${da.paths.working_dir}/sales-csv`
 -- MAGIC LOCATION = path<br/>
 -- MAGIC </code></strong>
 -- MAGIC 
--- MAGIC オプションは、引用符を使用しないテキストのキーおよび引用符を使用する値で渡されることにご注意ください。 Sparkは、カスタムのオプションで多くの<a href="https://docs.databricks.com/data/data-sources/index.html" target="_blank">データソース</a>をサポートーしており、外部<a href="https://docs.databricks.com/libraries/index.html" target="_blank">ライブラリ</a>を介して追加のシステムが非公式にサポートされている可能性があります。
+-- MAGIC オプションは、引用符を使用しないテキストのキーおよび引用符を使用する値で渡されることにご注意ください。 Sparkは、カスタムのオプションで多くの<a href="https://docs.databricks.com/data/data-sources/index.html" target="_blank">データソース</a>をサポートしており、外部<a href="https://docs.databricks.com/libraries/index.html" target="_blank">ライブラリ</a>を介して追加のシステムが非公式にサポートされている可能性があります。
 -- MAGIC 
 -- MAGIC **注**：ワークスペースの設定によっては、一部のデータソースに対して、ライブラリを読み込み、必要なセキュリティ設定を行うには管理者の手伝いが必要になる場合があります。
 

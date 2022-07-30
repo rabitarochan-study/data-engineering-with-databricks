@@ -55,12 +55,12 @@ DA.print_pipeline_config()
 # MAGIC 
 # MAGIC このセクションでは、コースウェアに付属しているノートブックを使ってパイプラインを構築します。 次のレッスンでは、ノートブックの内容について見ていきます。
 # MAGIC 
-# MAGIC 1. サイドバーの**ジョブ**ボタンをクリックします。
+# MAGIC 1. サイドバーの**ワークフロー**ボタンをクリックします。
 # MAGIC 1. **Delta Live Tables**タブを選択します。
 # MAGIC 1. **パイプラインを作成**をクリックします。
 # MAGIC 1. **製品エディション**は**Advanced**のままにします。
 # MAGIC 1. **パイプライン名**を入力します。これらの名前は一意である必要があるため、上記のセルに記載されている **`Pipeline Name`** を使用することをおすすめします。
-# MAGIC 1. **ノートブックライブラリ**では、ナビゲーターを使って**8.1.2 - Delta Live TablesのSQL**という付録のノートブックを探して選択します。
+# MAGIC 1. **ノートブックライブラリ**では、ナビゲーターを使って**8.1.2 - SQL for Delta Live TablesのSQL**という付録のノートブックを探して選択します。
 # MAGIC    * または、上記のセルに記載されている **`Notebook Path`** をコピーして、用意されているフィールドに貼り付けることもできます。
 # MAGIC    * このドキュメントは標準のDatabricksノートブックですが、SQL構文はDLTテーブル宣言に特化しています。
 # MAGIC    * 次のエクササイズでは、構文について見ていきます。
@@ -79,7 +79,9 @@ DA.print_pipeline_config()
 
 # COMMAND ----------
 
-DA.validate_pipeline_config()
+# Photon が有効になっていないと実行できないっぽい。
+# [LOG] AssertionError: Expected Photon to be enabled.
+# DA.validate_pipeline_config()
 
 # COMMAND ----------
 

@@ -41,6 +41,20 @@
 
 -- COMMAND ----------
 
+-- MAGIC %python
+-- MAGIC 
+-- MAGIC # セットアップ直後のファイル状況を確認する
+-- MAGIC working_dir_location = f"{DA.paths.working_dir}"
+-- MAGIC items = dbutils.fs.ls(working_dir_location)
+-- MAGIC display(items)
+-- MAGIC 
+-- MAGIC #
+-- MAGIC working_dir_location = f"{DA.paths.working_dir}/flight_delays"
+-- MAGIC items = dbutils.fs.ls(working_dir_location)
+-- MAGIC display(items)
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC 
 -- MAGIC 
@@ -277,6 +291,17 @@ SELECT * FROM external_table;
 
 -- COMMAND ----------
 
+SELECT "${da.paths.working_dir}";
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC tbl_path = f"{DA.paths.working_dir}/external_table"
+-- MAGIC files = dbutils.fs.ls(tbl_path)
+-- MAGIC display(files)
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC 
 -- MAGIC 
@@ -307,7 +332,7 @@ DROP TABLE external_table;
 -- COMMAND ----------
 
 -- MAGIC %python 
--- MAGIC tbl_path = f"{DA.paths.working_dir}/external_table"
+-- MAGIC tbl_path = f"{DA.paths.working_dir}"
 -- MAGIC files = dbutils.fs.ls(tbl_path)
 -- MAGIC display(files)
 
@@ -343,3 +368,39 @@ DROP DATABASE ${da.db_name}_custom_location CASCADE;
 -- MAGIC Apache, Apache Spark, Spark and the Spark logo are trademarks of the <a href="https://www.apache.org/">Apache Software Foundation</a>.<br/>
 -- MAGIC <br/>
 -- MAGIC <a href="https://databricks.com/privacy-policy">Privacy Policy</a> | <a href="https://databricks.com/terms-of-use">Terms of Use</a> | <a href="https://help.databricks.com/">Support</a>
+
+-- COMMAND ----------
+
+-- テスト
+USE ${da.db_name}_default_location;
+
+CREATE OR REPLACE TABLE xxx_users (id INTEGER, name STRING) LOCATION '${da.paths.working_dir}/external_table';
+
+SELECT * FROM xxx_users;
+
+-- COMMAND ----------
+
+insert into xxx_users values 
+(1, "rabitarochan"),
+(2, "kengo asamizu");
+
+-- COMMAND ----------
+
+select * from xxx_users order by id;
+
+-- COMMAND ----------
+
+drop table xxx_users;
+
+-- COMMAND ----------
+
+SHOW TABLES;
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC 
+-- MAGIC #
+-- MAGIC dir_location = f"{DA.paths.working_dir}/external_table"
+-- MAGIC items = dbutils.fs.ls(dir_location)
+-- MAGIC display(items)

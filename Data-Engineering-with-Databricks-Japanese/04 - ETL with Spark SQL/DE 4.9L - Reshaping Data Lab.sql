@@ -18,7 +18,7 @@
 -- MAGIC 
 -- MAGIC ## 学習目標（Learning Objectives）
 -- MAGIC このラボでは、以下のことが学べます。
--- MAGIC - テーブルをパイボットして結合し、各ユーザーのためのクリックパスを作成する
+-- MAGIC - テーブルをピボットして結合し、各ユーザーのためのクリックパスを作成する
 -- MAGIC - 購入された商品の種類にフラグを立てるために高階関数を適用する
 
 -- COMMAND ----------
@@ -84,12 +84,40 @@
 
 -- COMMAND ----------
 
+-- events の構造を確認する
+DESCRIBE events;
+
+-- COMMAND ----------
+
 -- TODO
-CREATE OR REPLACE VIEW events_pivot
-<FILL_IN>
-("cart", "pillows", "login", "main", "careers", "guest", "faq", "down", "warranty", "finalize", 
-"register", "shipping_info", "checkout", "mattresses", "add_item", "press", "email_coupon", 
-"cc_info", "foam", "reviews", "original", "delivery", "premium")
+CREATE OR REPLACE VIEW events_pivot AS
+SELECT * FROM (
+  SELECT
+    user_id as user
+    , event_name
+  FROM
+    events
+) PIVOT (
+  count(event_name) FOR event_name IN (
+    "cart", "pillows", "login", "main", "careers"
+    , "guest", "faq", "down", "warranty", "finalize"
+    , "register", "shipping_info", "checkout", "mattresses", "add_item"
+    , "press", "email_coupon", "cc_info", "foam", "reviews"
+    , "original", "delivery", "premium"
+  )
+);
+
+SELECT * FROM events_pivot;
+
+-- COMMAND ----------
+
+--
+SELECT *
+FROM events
+WHERE
+  1 = 1
+  and user_id = 'UA000000103338608'
+;
 
 -- COMMAND ----------
 
@@ -157,9 +185,24 @@ CREATE OR REPLACE VIEW events_pivot
 
 -- COMMAND ----------
 
+-- transactions の構造を確認する
+DESCRIBE transactions;
+
+-- COMMAND ----------
+
 -- TODO
 CREATE OR REPLACE VIEW clickpaths AS
-<FILL_IN>
+  SELECT
+    e.*
+    , t.*
+  FROM 
+    events_pivot e
+    INNER JOIN transactions t on (
+      e.user = t.user_id
+    )
+;
+
+SELECT * FROM clickpaths;
 
 -- COMMAND ----------
 
@@ -196,11 +239,21 @@ CREATE OR REPLACE VIEW clickpaths AS
 
 -- COMMAND ----------
 
+DESCRIBE events;
+
+-- COMMAND ----------
+
 -- TODO
 CREATE OR REPLACE TABLE sales_product_flags AS
-<FILL_IN>
-EXISTS <FILL_IN>.item_name LIKE "%Mattress"
-EXISTS <FILL_IN>.item_name LIKE "%Pillow"
+SELECT
+  items
+  , EXISTS (items, i -> i.item_name LIKE "%Mattress") as mattress
+  , EXISTS (items, i -> i.item_name LIKE "%Pillow") as pollows
+FROM
+  events
+;
+
+SELECT count(*) FROM sales_product_flags;
 
 -- COMMAND ----------
 

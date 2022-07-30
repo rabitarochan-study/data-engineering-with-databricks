@@ -39,6 +39,10 @@
 
 -- COMMAND ----------
 
+select "${da.db_name}";
+
+-- COMMAND ----------
+
 USE ${da.db_name};
 
 -- COMMAND ----------
@@ -227,6 +231,17 @@ SELECT * FROM origin_destination
 WHERE origin_airport = 'BOS' AND destination_airport = 'LAX';
 
 SELECT count(origin_airport) AS `Number of Delayed Flights from BOS to LAX` FROM BOS_LAX;
+
+-- COMMAND ----------
+
+DESCRIBE EXTENDED bos_lax;
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC display(
+-- MAGIC   dbutils.fs.ls(f"{DA.paths.working_dir}/3_2.db")
+-- MAGIC )
 
 -- COMMAND ----------
 

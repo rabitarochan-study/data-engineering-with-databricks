@@ -58,6 +58,10 @@ SELECT * FROM foods
 
 -- COMMAND ----------
 
+DESCRIBE EXTENDED foods;
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC 
 -- MAGIC 

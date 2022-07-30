@@ -151,6 +151,18 @@
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC -- 元テーブル
+# MAGIC DESCRIBE EXTENDED bronze;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC -- ストリーミングテーブル
+# MAGIC DESCRIBE EXTENDED streaming_tmp_vw;
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC 
 # MAGIC 
@@ -242,6 +254,11 @@ for s in spark.streams.active:
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC select * from device_counts_tmp_vw;
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC 
 # MAGIC 
@@ -310,6 +327,12 @@ for s in spark.streams.active:
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC -- データ確認 / 非 Stream の Delta テーブルとなっている！
+# MAGIC SELECT * FROM device_counts;
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC 
 # MAGIC 
@@ -342,7 +365,7 @@ DA.block_until_stream_is_ready(query)
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT *
+# MAGIC SELECT *k
 # MAGIC FROM device_counts
 
 # COMMAND ----------

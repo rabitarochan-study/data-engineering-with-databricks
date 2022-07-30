@@ -88,11 +88,11 @@ DA.print_pipeline_config()
 # MAGIC 
 # MAGIC ## パイプラインを作成し構成する（Create and Configure a Pipeline）
 # MAGIC 
-# MAGIC 1. サイドバーの **ジョブ**ボタンをクリックし、**Delta Live Tables**タブを選択します。
+# MAGIC 1. サイドバーの **ワークフロー**ボタンをクリックし、**Delta Live Tables**タブを選択します。
 # MAGIC 1. **パイプラインを作成**をクリックします。
 # MAGIC 1. **製品エディション**は**Advanced**のままにします。
 # MAGIC 1. **パイプライン名**を入力します。これらの名前は一意である必要があるため、上記のセルに記載されている**Pipeline Name**使用することをおすすめします。
-# MAGIC 1. **ノートブックライブラリ** では、ナビゲーターを使ってノートブック **`DE 8.2.5L - SQLパイプラインをDLTラボに移行する`** を探して選択します。
+# MAGIC 1. **ノートブックライブラリ** では、ナビゲーターを使ってノートブック **`DE 8.2.2L - Migrating a SQL Pipeline to DLT Lab`** を探して選択します。
 # MAGIC 1. ソースの構成
 # MAGIC     * **`構成を追加`** をクリックします
 # MAGIC     * **Key**フィールドに **`source`** という単語を入力します

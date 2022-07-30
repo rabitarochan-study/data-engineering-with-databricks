@@ -212,7 +212,7 @@ DA.data_factory.load()
 # MAGIC   FROM bronze_tmp a
 # MAGIC   INNER JOIN pii b
 # MAGIC   ON a.mrn = b.mrn
-# MAGIC   WHERE heartrate > 0)
+# MAGIC   WHERE heartrate > 0);
 
 # COMMAND ----------
 
@@ -284,6 +284,18 @@ DA.data_factory.load()
       .option("checkpointLocation", f"{DA.paths.checkpoints}/daily_avg")
       .trigger(once=True)
       .table("daily_patient_avg"))
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC --
+# MAGIC SHOW TABLES;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC --
+# MAGIC DESCRIBE EXTENDED bronze;
 
 # COMMAND ----------
 

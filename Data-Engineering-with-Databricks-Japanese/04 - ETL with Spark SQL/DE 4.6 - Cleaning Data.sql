@@ -71,6 +71,18 @@ FROM users_dirty
 
 -- COMMAND ----------
 
+select *
+from users_dirty
+where 
+  1 = 1
+--   and user_id is null
+--   and user_first_touch_timestamp is null
+  and email is null
+--   and updated is null
+;
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC 
 -- MAGIC 
@@ -301,7 +313,7 @@ SELECT *,
   regexp_extract(email, "(?<=@).+", 0) AS email_domain
 FROM (
   SELECT *,
-    CAST(user_first_touch_timestamp / 1e6 AS timestamp) AS first_touch 
+    CAST(user_first_touch_timestamp / 1e6 AS timestamp) AS first_touch
   FROM deduped_users
 )
 

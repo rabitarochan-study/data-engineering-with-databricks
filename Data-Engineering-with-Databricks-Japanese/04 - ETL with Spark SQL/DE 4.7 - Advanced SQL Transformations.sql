@@ -51,11 +51,20 @@
 
 -- COMMAND ----------
 
+-- events_raw のチェック
+SELECT * FROM events_raw;
+
+-- COMMAND ----------
+
 CREATE OR REPLACE TEMP VIEW events_strings AS
   SELECT string(key), string(value) 
   FROM events_raw;
   
 SELECT * FROM events_strings
+
+-- COMMAND ----------
+
+DESCRIBE EXTENDED events_strings;
 
 -- COMMAND ----------
 
@@ -66,7 +75,7 @@ SELECT * FROM events_strings
 
 -- COMMAND ----------
 
-SELECT value:device, value:geo:city 
+SELECT value:device, value:geo:city
 FROM events_strings
 
 -- COMMAND ----------
@@ -100,6 +109,11 @@ CREATE OR REPLACE TEMP VIEW parsed_events AS
   FROM events_strings;
   
 SELECT * FROM parsed_events
+
+-- COMMAND ----------
+
+-- parsed_events テーブルの json カラムのデータ型を確認する
+DESCRIBE EXTENDED parsed_events;
 
 -- COMMAND ----------
 

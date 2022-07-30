@@ -72,6 +72,13 @@ DESCRIBE HISTORY events
 
 -- COMMAND ----------
 
+-- 履歴が残っているので、タイムトラベルクエリーで件数を確認したが、同一だった。
+-- -> 確認したところ、件数は同一だったようだ。
+REFRESH TABLE events;
+SELECT count(*) FROM events VERSION AS OF 0;
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC 
 -- MAGIC 

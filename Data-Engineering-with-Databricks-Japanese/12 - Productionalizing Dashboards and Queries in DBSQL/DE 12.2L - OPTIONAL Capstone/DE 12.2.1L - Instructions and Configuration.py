@@ -158,6 +158,21 @@ DA.generate_register_dlt_event_metrics_sql()
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC CREATE TABLE IF NOT EXISTS dbacademy_odl_user_689571_databrickslabs_com_dewd_cap_12.dlt_events
+# MAGIC LOCATION 'dbfs:/user/odl_user_689571@databrickslabs.com/dbacademy/dewd/cap_12/storage/system/events';
+# MAGIC 
+# MAGIC CREATE VIEW IF NOT EXISTS dbacademy_odl_user_689571_databrickslabs_com_dewd_cap_12.dlt_success AS
+# MAGIC SELECT * FROM dbacademy_odl_user_689571_databrickslabs_com_dewd_cap_12.dlt_events
+# MAGIC WHERE details:flow_progress:metrics IS NOT NULL;
+# MAGIC 
+# MAGIC CREATE VIEW IF NOT EXISTS dbacademy_odl_user_689571_databrickslabs_com_dewd_cap_12.dlt_metrics AS
+# MAGIC SELECT timestamp, origin.flow_name, details 
+# MAGIC FROM dbacademy_odl_user_689571_databrickslabs_com_dewd_cap_12.dlt_success
+# MAGIC ORDER BY timestamp DESC;
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC 
 # MAGIC 

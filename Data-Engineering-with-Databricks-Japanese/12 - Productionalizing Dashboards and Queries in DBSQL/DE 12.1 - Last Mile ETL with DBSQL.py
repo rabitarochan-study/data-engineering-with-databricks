@@ -100,6 +100,21 @@ DA.generate_load()
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC  
+# MAGIC USE dbacademy_odl_user_689571_databrickslabs_com_dewd_12_1;
+# MAGIC 
+# MAGIC INSERT INTO user_ping
+# MAGIC SELECT *, 
+# MAGIC   get_ping() ping, 
+# MAGIC   current_timestamp() time
+# MAGIC FROM user_ids
+# MAGIC WHERE is_active()=true;
+# MAGIC 
+# MAGIC SELECT * FROM user_ping;
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC 
 # MAGIC 

@@ -234,12 +234,15 @@ SELECT * FROM purchase_dates
 
 ALTER TABLE purchase_dates ADD CONSTRAINT valid_date CHECK (date > '2020-01-01');
 
+-- CHECK 制約を削除する場合は、DROP CONSTRAINT を使用する。
+-- ALTER TABLE purchase_dates DROP CONSTRAINT valid_date;
+
 -- COMMAND ----------
 
 -- MAGIC %md
 -- MAGIC 
 -- MAGIC 
--- MAGIC テーブルの制約は **`TBLPROPERTIES`** フィールドに表示されます。
+-- MAGIC テーブルの制約は **`Table Properties`** フィールドに表示されます。
 
 -- COMMAND ----------
 
@@ -342,6 +345,21 @@ DEEP CLONE purchases
 
 CREATE OR REPLACE TABLE purchases_shallow_clone
 SHALLOW CLONE purchases
+
+-- COMMAND ----------
+
+SHOW TABLES;
+
+-- COMMAND ----------
+
+DESCRIBE EXTENDED purchases_clone;
+
+-- COMMAND ----------
+
+-- MAGIC %python
+-- MAGIC display(
+-- MAGIC   dbutils.fs.ls(f"{DA.paths.working_dir}/4_3.db/purchases_shallow_clone")
+-- MAGIC )
 
 -- COMMAND ----------
 

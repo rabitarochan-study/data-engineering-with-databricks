@@ -78,15 +78,26 @@
 
 def autoload_to_table(data_source, source_format, table_name, checkpoint_directory):
     query = (spark.readStream
-                  .format("cloudFiles")
-                  .option("cloudFiles.format", source_format)
+                  .format("cloudFiles") # (1)
+                  .option("cloudFiles.format", source_format) # (2)
                   .option("cloudFiles.schemaLocation", checkpoint_directory)
                   .load(data_source)
                   .writeStream
-                  .option("checkpointLocation", checkpoint_directory)
+                  .option("checkpointLocation", checkpoint_directory) # (3) 
                   .option("mergeSchema", "true")
                   .table(table_name))
     return query
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC | No | 説明 |
+# MAGIC | --- | --- |
+# MAGIC | (1) | `cloudFiles` : Auto Loader を利用することを指定。この他に、 `kafka` などのストリーミングデータソースが用意されている。 |
+# MAGIC | (2) | `option` メソッドで、 `format` で指定したデータソースに対するオプションを指定する。複数指定することができる。 |
+# MAGIC | (3) | `writeStream` 以降に `format` を指定しない場合、デフォルトで Delta テーブルになるようだ。 |
+# MAGIC | (4) |  |
 
 # COMMAND ----------
 
